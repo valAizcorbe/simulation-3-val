@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { updateState } from "../../ducks/reducer";
 
 class Auth extends Component {
   constructor() {
@@ -9,13 +11,6 @@ class Auth extends Component {
       password: ""
     };
   }
-
-  handleInputs = e => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value
-    });
-  };
 
   handleLogin = () => {
     axios
@@ -47,6 +42,13 @@ class Auth extends Component {
       .catch(err => console.log(err));
   };
 
+  handleInputs = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
   render() {
     const { username, password } = this.state;
     return (
@@ -69,4 +71,7 @@ class Auth extends Component {
   }
 }
 
-export default Auth;
+export default connect(
+  null,
+  { updateState }
+)(Auth);

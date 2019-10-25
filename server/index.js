@@ -3,6 +3,7 @@ const express = require("express");
 const massive = require("massive");
 // const session = require('ex')
 const { CONNECTION_STRING, SERVER_PORT } = process.env;
+const authCtrl = require("./authController");
 const ctrl = require("./controller");
 const app = express();
 const port = SERVER_PORT;
@@ -29,5 +30,7 @@ massive(CONNECTION_STRING)
 //   })
 // );
 
-app.post("/auth/register", ctrl.register);
-app.post("/auth/login", ctrl.login);
+app.get("/api/posts", ctrl.getPosts);
+
+app.post("/auth/register", authCtrl.register);
+app.post("/auth/login", authCtrl.login);
