@@ -1,0 +1,1 @@
+select u.user_id, u.username, u.password, u.profile_pic from users u join posts p on u.user_id = p.author_id where u.username = $1
