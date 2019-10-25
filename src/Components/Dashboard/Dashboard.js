@@ -13,7 +13,7 @@ class Dashboard extends Component {
     };
   }
 
-  getPosts = id => {
+  componentDidMount = props => {
     this.props.getPosts();
   };
 
@@ -46,11 +46,13 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = reduxState => {
-  const { id } = reduxState;
+function mapStateToProps(state) {
   return {
-    id
+    posts: state.reducer
   };
-};
+}
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(
+  mapStateToProps,
+  { getPosts }
+)(Dashboard);
